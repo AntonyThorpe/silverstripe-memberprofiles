@@ -14,7 +14,7 @@
 		"homepage": "https://www.symbiote.com.au/"
 	}],
 	"require": {
-		"silverstripe/cms": "^4.11"
+		"silverstripe/cms": "^5"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.0",
