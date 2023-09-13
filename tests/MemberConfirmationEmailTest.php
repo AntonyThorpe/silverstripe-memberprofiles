@@ -59,7 +59,7 @@ class MemberConfirmationEmailTest extends SapphireTest
 
         $email = new MemberConfirmationEmail($page, $member);
         $loginLink = Controller::join_links(
-            $email->BaseURL(),
+            Director::absoluteBaseURL(),
             singleton(Security::class)->Link('login')
         );
         $expected = "<ul>
