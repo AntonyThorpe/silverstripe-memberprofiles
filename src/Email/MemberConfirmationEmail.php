@@ -8,6 +8,7 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Security\Security;
 use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
 use SilverStripe\Control\Email\Email;
 
 /**
@@ -146,8 +147,9 @@ class MemberConfirmationEmail extends Email
          * @var \SilverStripe\ORM\FieldType\DBDatetime $createdDateObj
          */
         $createdDateObj = $member->obj('Created');
+        $absoluteBaseURL = Director::absoluteBaseURL();
+        $this->extend('updateBaseURL', $absoluteBaseURL);
 
-        $absoluteBaseURL = $this->BaseURL();
         $variables = [
             '$SiteName'       => SiteConfig::current_site_config()->Title,
             '$LoginLink'      => Controller::join_links(
@@ -171,13 +173,6 @@ class MemberConfirmationEmail extends Email
         $this->extend('updateEmailVariables', $variables);
 
         return str_replace(array_keys($variables), array_values($variables), $string);
-    }
-
-    public function BaseURL()
-    {
-        $absoluteBaseURL = parent::BaseURL();
-        $this->extend('updateBaseURL', $absoluteBaseURL);
-        return $absoluteBaseURL;
     }
 
     /**
