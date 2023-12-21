@@ -65,8 +65,8 @@ class MemberConfirmationAdminTest extends FunctionalTest
 
         $this->logInWithPermission('ADMIN');
 
-        $gLink = Controller::join_links($admin->Link(), 'groups/show', $group->ID);
-        $mLink = Controller::join_links($admin->Link(), 'users/EditForm/field/Members/item', $member->ID, 'edit');
+        $gLink = Controller::join_links($admin->Link(), 'EditForm/field/Groups/item/', $group->ID, '/edit');
+        $mLink = Controller::join_links($admin->Link(), 'EditForm/field/Members/item/', $member->ID, '/edit');
 
         $this->get($gLink);
         $this->get($mLink);
